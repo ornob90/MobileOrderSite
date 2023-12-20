@@ -10,7 +10,7 @@ import AddToFav from "../singleUseBtn/AddToFav";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
-  const { name, image, brand, price } = product || {};
+  const { _id, name, image, brand, price } = product || {};
 
   return (
     <div className="h-[420px] border">
@@ -31,7 +31,7 @@ const ProductCard = ({ product }) => {
             Price: <span className="font-medium text-lg">{price}$</span>
           </p>
           <Button
-            onClick={() => navigate("/detail/1")}
+            onClick={() => navigate(`/detail/${_id}`)}
             className="bg-black flex items-center gap-2 text-white py-1 px-2 rounded-md"
           >
             Details

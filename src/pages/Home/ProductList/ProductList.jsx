@@ -39,7 +39,7 @@ const ProductList = () => {
   console.log(products);
 
   return (
-    <Container className="mt-8 relative overflow-hidden">
+    <Container className="mt-8 relative overflow-hidden min-h-[700px]">
       <Filter
         filterOptions={filterOptions}
         handleFilterOption={handleFilterOption}

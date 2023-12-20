@@ -3,7 +3,12 @@ import { MdClose } from "react-icons/md";
 import Input from "../../../../components/html/Input";
 import SelectOption from "../../../../components/shared/SelectOption";
 
-const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
+const FilterDrawer = ({
+  filterOptions,
+  handleFilterOption,
+  drawerOpen,
+  setDrawerOpen,
+}) => {
   return (
     <div
       className={`min-h-[500px] absolute w-[90%] sm:w-[70%] md:w-[40%] lg:w-[25%]  top-[20px] md:top-0 bg-gray-100 px-4 text-sm ${
@@ -20,13 +25,24 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
       <p className="mt-4 ">Price</p>
 
       <div className="border-b border-b-gray-400 pb-5">
-        <Input type="range" className="w-full accent-black" />
+        <Input
+          value={filterOptions.price}
+          name="price"
+          onChange={handleFilterOption}
+          type="number"
+          min={0}
+          placeHolder="MAX Price"
+          className="bg-white border border-gray-400 mt-3 w-full"
+        />
       </div>
 
       {/* Memory */}
       <p className="mt-4 ">Memory</p>
       <div className="border-b border-b-gray-400 pb-5">
         <Input
+          value={filterOptions.memory}
+          name="memory"
+          onChange={handleFilterOption}
           type="number"
           min={0}
           placeHolder="GB"
@@ -36,7 +52,8 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
 
       {/* Name */}
       <SelectOption
-        name="Name"
+        value={filterOptions.name}
+        name="name"
         options={[
           "Samsung",
           "Vivo",
@@ -48,9 +65,11 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
           "Vivo",
           "Apple",
         ]}
+        onChange={handleFilterOption}
       />
       <SelectOption
-        name="Type"
+        value={filterOptions.type}
+        name="type"
         options={[
           "Samsung",
           "Vivo",
@@ -62,9 +81,11 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
           "Vivo",
           "Apple",
         ]}
+        onChange={handleFilterOption}
       />
       <SelectOption
-        name="Processor"
+        value={filterOptions.processor}
+        name="processor"
         options={[
           "Samsung",
           "Vivo",
@@ -76,10 +97,12 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
           "Vivo",
           "Apple",
         ]}
+        onChange={handleFilterOption}
       />
 
       <SelectOption
-        name="OS"
+        value={filterOptions.os}
+        name="os"
         options={[
           "Samsung",
           "Vivo",
@@ -91,6 +114,7 @@ const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
           "Vivo",
           "Apple",
         ]}
+        onChange={handleFilterOption}
       />
     </div>
   );

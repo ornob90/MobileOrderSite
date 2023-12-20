@@ -5,7 +5,7 @@ import Input from "../../../../components/html/Input";
 import { GrSearch } from "react-icons/gr";
 import FilterDrawer from "./FilterDrawer";
 
-const Filter = () => {
+const Filter = ({ filterOptions, handleFilterOption }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -26,7 +26,12 @@ const Filter = () => {
       </form>
 
       {/* Filter Options */}
-      <FilterDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+      <FilterDrawer
+        filterOptions={filterOptions}
+        handleFilterOption={handleFilterOption}
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
+      />
     </div>
   );
 };

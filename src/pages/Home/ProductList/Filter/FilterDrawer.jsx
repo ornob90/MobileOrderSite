@@ -3,11 +3,18 @@ import { MdClose } from "react-icons/md";
 import Input from "../../../../components/html/Input";
 import SelectOption from "../../../../components/shared/SelectOption";
 
-const FilterDrawer = () => {
+const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
   return (
-    <div className="min-h-[500px] absolute w-[20%] left-0 top-0 bg-gray-200 px-4 text-sm">
+    <div
+      className={`min-h-[500px] absolute w-[90%] sm:w-[70%] md:w-[40%] lg:w-[20%]  top-[20px] md:top-0 bg-gray-200 px-4 text-sm ${
+        drawerOpen ? "left-0" : "left-[-100%] "
+      } duration-[.4s]`}
+    >
       <p className="flex justify-end pt-4 ">
-        <MdClose className="text-xl" />
+        <MdClose
+          onClick={() => setDrawerOpen(false)}
+          className="text-xl cursor-pointer"
+        />
       </p>
       {/* Price */}
       <p className="mt-4 ">Price</p>

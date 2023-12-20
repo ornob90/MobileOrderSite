@@ -1,8 +1,11 @@
 import React from "react";
 import Button from "../html/Button";
 import { FaArrowAltCircleRight, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="h-[420px] border">
       <div className="h-[65%] flex justify-center  items-center">
@@ -24,7 +27,10 @@ const ProductCard = () => {
           <p>
             Price: <span className="font-medium text-lg">12.00$</span>
           </p>
-          <Button className="bg-black flex items-center gap-2 text-white py-1 px-2 rounded-md">
+          <Button
+            onClick={() => navigate("/detail/1")}
+            className="bg-black flex items-center gap-2 text-white py-1 px-2 rounded-md"
+          >
             Details
             <FaArrowAltCircleRight />
           </Button>

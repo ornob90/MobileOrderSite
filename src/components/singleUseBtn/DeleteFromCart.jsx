@@ -2,9 +2,14 @@ import { MdClose } from "react-icons/md";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import useDeletePublic from "../../hooks/apiPublic/useDeletePublic";
+import useAuth from "../../hooks/auth/useAuth";
 
 const DeleteFromCart = ({ id }) => {
-  const { mutateAsync: removeFromCart } = useDeletePublic(null);
+  const { user } = useAuth();
+  const { mutateAsync: removeFromCart } = useDeletePublic([
+    ["Carts", user?.email],
+    ["CartStat", user?.email],
+  ]);
 
   const handleDelete = async () => {
     const result = await Swal.fire({

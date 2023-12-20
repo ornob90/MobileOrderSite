@@ -7,9 +7,11 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/auth/useAuth";
 
 const AddToCart = ({ type = "icon", product }) => {
-  const { mutateAsync: addToCart } = usePostPublic(null, "/add-to-cart");
-
   const { user } = useAuth();
+  const { mutateAsync: addToCart } = usePostPublic(
+    ["CartStat", user?.email],
+    "/add-to-cart"
+  );
 
   const handleAddToCart = async () => {
     try {

@@ -10,6 +10,7 @@ import CartCountIcon from "../../../components/shared/CartCountIcon";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [bgWhite, setBgWhite] = useState(false);
   const { scrollY } = useScroll();
 
   const { pathname } = useLocation();
@@ -17,6 +18,8 @@ const Navbar = () => {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prevValue = scrollY.getPrevious();
+
+    setBgWhite(latest > 400);
 
     if (latest > prevValue && latest > 30) {
       setHidden(true);
@@ -36,8 +39,8 @@ const Navbar = () => {
       slug: "/cart",
     },
     {
-      name: "Checkout",
-      slug: "/checkout",
+      name: "Favorite",
+      slug: "/favorite",
     },
   ];
 
@@ -51,21 +54,27 @@ const Navbar = () => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={`fixed top-0 left-0 z-[12] w-full ${
         pathname === "/login" || pathname === "/signup" ? "hidden" : ""
-      } h-max bg-white`}
+      } ${
+        pathname === "/" && !bgWhite ? " bg-transparent" : "bg-white"
+      } h-max `}
     >
       <nav
         className={`px-[5%] flex justify-between  py-4 items-center overflow-hidden shadow-sm text-black z-10 `}
       >
         {/* Logo */}
         <div className="w-max flex items-center gap-3">
-          <Link to="/" className="text-lg  font-clashBold sm:text-xl">
+          <Link to="/" className="text-lg  font-bold sm:text-xl">
             ShoeSphere
           </Link>
         </div>
 
         <div className="flex justify-end gap-8 w-[70%]">
           {/* NavItems */}
-          <ul className="hidden lg:flex justify-center gap-6  font-clashRegular items-center pl-[5%]">
+          <ul
+            className={`hidden lg:flex justify-center gap-6  font-clashRegular items-center pl-[5%]  ${
+              pathname === "/" ? "text-white" : ""
+            }`}
+          >
             {navItems.map(({ name, slug }) => (
               <li key={name}>
                 <NavLink

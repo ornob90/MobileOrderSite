@@ -4,10 +4,9 @@ import { FaArrowAltCircleRight, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
-import AddToCart from "../singleUseBtn/AddToCart";
 import AddToFav from "../singleUseBtn/AddToFav";
 
-const ProductCard = () => {
+const FavoriteCard = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,10 +21,7 @@ const ProductCard = () => {
       <div className="p-4">
         <div className="flex justify-between items-center text-sm">
           <p className="font-bold">Samsung v2</p>
-          <div className="flex  items-center gap-4">
-            <AddToCart />
-            <AddToFav />
-          </div>
+          <AddToFav />
         </div>
         <p className="mt-3 text-gray-500">BRAND</p>
         <div className="flex justify-between items-center text-sm mt-2">
@@ -45,4 +41,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default FavoriteCard;

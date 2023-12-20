@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../../components/shared/Container";
 import Button from "../../components/html/Button";
 import { CiShoppingCart } from "react-icons/ci";
+import AddToCart from "../../components/singleUseBtn/AddToCart";
 
 const Detail = () => {
   return (
@@ -70,11 +71,7 @@ const Detail = () => {
               </p>
             </li>
           </ul>
-          <div>
-            <Button className="flex justify-between items-center gap-2 bg-black text-white py-2 px-5 text-sm md:text-base mt-4 md:mt-0">
-              Add To Cart <CiShoppingCart className="text-xl" />
-            </Button>
-          </div>
+          <AddToCart type="button" />
         </div>
       </div>
     </Container>

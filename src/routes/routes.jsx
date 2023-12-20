@@ -3,6 +3,7 @@ import Root from "../layout/Root";
 import Home from "../pages/Home/Home";
 import Detail from "../pages/Details/Detail";
 import Cart from "../pages/Cart/Cart";
+import Favorite from "../pages/Favorite/Favorite";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/favorite",
+        element: <Favorite />,
       },
     ],
   },

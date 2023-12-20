@@ -4,10 +4,9 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenuRightAlt } from "react-icons/cg";
 import DropDown from "./DropDown";
 import { useScroll, motion, useMotionValueEvent } from "framer-motion";
-import { RiHeartAddLine } from "react-icons/ri";
 import Button from "../../../components/html/Button";
 
-const Navbar = ({ handleCartOpen }) => {
+const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
@@ -51,7 +50,7 @@ const Navbar = ({ handleCartOpen }) => {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={`fixed top-0 left-0 z-[12] w-full ${
         pathname === "/login" || pathname === "/signup" ? "hidden" : ""
-      } h-max `}
+      } h-max bg-white`}
     >
       <nav
         className={`px-[5%] flex justify-between  py-4 items-center overflow-hidden shadow-sm text-black z-10 `}
@@ -63,16 +62,16 @@ const Navbar = ({ handleCartOpen }) => {
           </Link>
         </div>
 
-        <div className="flex justify-end gap-6 w-[70%]">
+        <div className="flex justify-end gap-8 w-[70%]">
           {/* NavItems */}
-          <ul className="hidden lg:flex justify-center gap-6 w-[40%] font-clashRegular items-center pl-[5%]">
+          <ul className="hidden lg:flex justify-center gap-6  font-clashRegular items-center pl-[5%]">
             {navItems.map(({ name, slug }) => (
               <li key={name}>
                 <NavLink
                   to={slug}
                   className={({ isActive }) =>
                     isActive
-                      ? "border-b border-black text-[14px]"
+                      ? "border-b-2 text-primary border-primary text-[14px]"
                       : "nav-button duration-300 text-[14px]"
                   }
                 >
@@ -86,17 +85,14 @@ const Navbar = ({ handleCartOpen }) => {
 
           <div className="flex justify-end items-center gap-4  md:w-[80%] lg:w-max">
             <div>
-              <AiOutlineShoppingCart
-                onClick={handleCartOpen}
-                className="text-xl md:text-2xl"
-              />
+              <AiOutlineShoppingCart className="text-xl md:text-2xl" />
             </div>
 
             <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
 
             <Button
               onClick={() => navigate("/login")}
-              className={`text-[12px] text-white md:text-sm px-4 md:px-3 font-clashRegular py-1 md:py-2 `}
+              className={`text-[12px] text-white md:text-sm px-4 md:px-3 font-clashRegular py-1 md:py-2 bg-black`}
             >
               Sign In
             </Button>

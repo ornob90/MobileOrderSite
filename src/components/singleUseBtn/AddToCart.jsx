@@ -4,17 +4,25 @@ import Button from "../html/Button";
 import { CiShoppingCart } from "react-icons/ci";
 import usePostPublic from "../../hooks/apiPublic/usePostPublic";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/auth/useAuth";
 
 const AddToCart = ({ type = "icon", product }) => {
   const { mutateAsync: addToCart } = usePostPublic(null, "/add-to-cart");
 
+  const { user } = useAuth();
+
   const handleAddToCart = async () => {
     try {
-      const response = await addToCart(product);
+      const productToAdd = {
+        userEmail: user?.email,
+        productID: product?._id,
+      };
+
+      const response = await addToCart(productToAdd);
 
       toast.success("Added to cart!!");
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Couldn't added to card!!");
     }
   };
 

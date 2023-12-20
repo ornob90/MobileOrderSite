@@ -3,102 +3,31 @@ import CartTableRow from "./CartTableRow";
 import Button from "../../components/html/Button";
 
 const CartTable = () => {
-  //   const { _id: userID } = useUser() || {};
-
-  //   const { user } = useAuth();
-  //   const axiosSecure = useAxiosSecure();
-
-  //   const [cartProducts, setCartProducts] = useState([]);
-
-  //   const { data } = useGetSecure(["Carts", userID], `/carts/${userID}`);
-
-  //   useEffect(() => {
-  //     setCartProducts(data);
-  //   }, [data]);
-
-  //   console.log(cartProducts);
-
-  // useEffect(() => {
-  //   // console.log(userID);
-  //   if (userID) {
-  //     axiosSecure
-  //       .get(`/carts/${userID}`)
-  //       .then((res) => setCartProducts(res.data));
-  //   }
-  // }, [userID]);
-
-  const [selectedIds, setSelectedIds] = useState({});
-
-  const handleSelected = (e, id) => {
-    setSelectedIds((prev) => ({ ...prev, [id]: e.target.checked }));
-  };
-
-  const handleSelectAll = (e) => {
-    const ids = cartProducts?.map(({ _id }) => _id);
-
-    ids.forEach((id) => {
-      setSelectedIds((prev) => ({ ...prev, [id]: e.target.checked }));
-    });
-  };
-
-  //   const handleDeleteSelected = async () => {
-  //     try {
-  //       const selectedProduct = Object.keys(selectedIds).filter(
-  //         (id) => selectedIds[id]
-  //       );
-  //       if (selectedProduct.length === 0) {
-  //         toast.error("No product selected!!");
-  //         return;
-  //       }
-  //       const response = await axiosSecure.delete(`/carts`, {
-  //         data: selectedProduct,
-  //       });
-  //       console.log(response);
-  //       if (response.data.deleteAll) {
-  //         setCartProducts(
-  //           cartProducts.filter(
-  //             ({ _id }) =>
-  //               !Object.keys(selectedIds)
-  //                 .filter((id) => selectedIds[id])
-  //                 .includes(_id)
-  //           )
-  //         );
-  //         toast.error("Products removed from cart");
-  //       }
-
-  //       // toast.success(response);
-  //     } catch (error) {
-  //       console.error(error);
-  //       toast.error(error.message);
-  //     }
-  //   };
-
-  // console.log(Object.keys(selectedIds).filter((id) => selectedIds[id]));
-
   return (
     <table className=" no-scrollbar font-poppins w-full  ">
       {/* Header */}
-      <thead className="grid grid-cols-4 pb-4 border-b font-semibold gap-2">
+      <thead className=" border-b pb-4 mt-2 overflow-scroll  no-scrollbar w-full ">
         <tr
           //   onClick={handleSelectAll}
-          className="flex gap-2 items-center col-span-2 w-max "
+          className=" gap-2  w-full grid grid-cols-5 pb-4"
         >
-          <input type="checkbox" name="" id="select-all" />
-          <label
-            htmlFor="select-all"
-            className=" text-[12px] md:text-sm lg:text-base"
-          >
-            Select All
-          </label>
+          <td className="col-span-2">
+            <label
+              htmlFor="select-all"
+              className=" text-[12px] md:text-sm lg:text-base"
+            >
+              Product
+            </label>
+          </td>
+          {["Quantity", "Total", "Action"].map((col) => (
+            <td
+              className="col-span-1 text-[12px] md:text-sm lg:text-base flex justify-center items-center"
+              key={col}
+            >
+              {col}
+            </td>
+          ))}
         </tr>
-        {["Quantity", "Total"].map((col) => (
-          <tr
-            className="col-span-1 text-[12px] md:text-sm lg:text-base"
-            key={col}
-          >
-            {col}
-          </tr>
-        ))}
       </thead>
       <tbody className="min-h-[200px] overflow-auto no-scrollbar">
         <CartTableRow

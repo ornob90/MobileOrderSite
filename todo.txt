@@ -1,0 +1,8 @@
+/* Static Front End */
+
+1. cart summary
+2. toggle cart checkout in cart summary
+3. favorite page 
+4. update quantity button style 
+5. custom select option add (optional)
+

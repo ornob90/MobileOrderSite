@@ -5,6 +5,7 @@ import { CgMenuRightAlt } from "react-icons/cg";
 import DropDown from "./DropDown";
 import { useScroll, motion, useMotionValueEvent } from "framer-motion";
 import Button from "../../../components/html/Button";
+import CartCountIcon from "../../../components/shared/CartCountIcon";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -84,9 +85,7 @@ const Navbar = () => {
           {/* Profile and Cart */}
 
           <div className="flex justify-end items-center gap-4  md:w-[80%] lg:w-max">
-            <div>
-              <AiOutlineShoppingCart className="text-xl md:text-2xl" />
-            </div>
+            <CartCountIcon />
 
             <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
 

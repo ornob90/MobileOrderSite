@@ -6,7 +6,7 @@ import SelectOption from "../../../../components/shared/SelectOption";
 const FilterDrawer = ({ drawerOpen, setDrawerOpen }) => {
   return (
     <div
-      className={`min-h-[500px] absolute w-[90%] sm:w-[70%] md:w-[40%] lg:w-[20%]  top-[20px] md:top-0 bg-gray-200 px-4 text-sm ${
+      className={`min-h-[500px] absolute w-[90%] sm:w-[70%] md:w-[40%] lg:w-[25%]  top-[20px] md:top-0 bg-gray-100 px-4 text-sm ${
         drawerOpen ? "left-0" : "left-[-100%] "
       } duration-[.4s]`}
     >

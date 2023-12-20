@@ -8,9 +8,9 @@ import generateQueryString from "../../../utils/generateQueryString";
 
 const ProductList = () => {
   const [filterOptions, setFilterOptions] = useState({});
-  const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
   const axiosPublic = useAxiosPublic();
+
   const handleFilterOption = (e) => {
     const { name, value } = e.target;
 

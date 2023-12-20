@@ -6,12 +6,16 @@ import DropDown from "./DropDown";
 import { useScroll, motion, useMotionValueEvent } from "framer-motion";
 import Button from "../../../components/html/Button";
 import CartCountIcon from "../../../components/shared/CartCountIcon";
+import useAuth from "../../../hooks/auth/useAuth";
+import LogoutBtn from "../../../components/singleUseBtn/LogoutBtn";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [bgWhite, setBgWhite] = useState(false);
   const { scrollY } = useScroll();
+
+  const { user } = useAuth();
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -96,17 +100,27 @@ const Navbar = () => {
           <div className="flex justify-end items-center gap-4  md:w-[80%] lg:w-max">
             <CartCountIcon bgWhite={bgWhite} />
 
-            <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
+            {user?.email ? (
+              <>
+                <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
 
-            <Button
-              onClick={() => navigate("/login")}
-              className={`text-[12px] text-white md:text-sm px-4 md:px-3 font-clashRegular py-1 md:py-2 bg-black`}
-            >
-              Sign In
-            </Button>
+                <div className="hidden md:block">
+                  <LogoutBtn />
+                </div>
+              </>
+            ) : (
+              <Button
+                onClick={() => navigate("/login")}
+                className={`text-[12px] text-white md:text-sm px-4 md:px-3 font-clashRegular py-1 md:py-2 bg-black`}
+              >
+                Sign In
+              </Button>
+            )}
 
             <CgMenuRightAlt
-              className="text-xl md:hidden "
+              className={`text-xl md:hidden  ${
+                bgWhite ? "text-black" : "text-white"
+              }`}
               onClick={() => setMenu(!menu)}
             />
           </div>

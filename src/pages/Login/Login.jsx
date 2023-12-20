@@ -1,16 +1,111 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/html/Button";
 import Input from "../../components/html/Input";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../hooks/axios/useAxiosPublic";
+import usePostPublic from "../../hooks/apiPublic/usePostPublic";
+import useAuth from "../../hooks/auth/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const {
+    user,
+    signInMethod,
+    googleSignInMethod,
+    loading: authLoading,
+  } = useAuth();
+
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const { state } = useLocation();
+
+  const { mutateAsync: addUser } = usePostPublic(null, "/user");
+
+  // const { mutateAsync: addUser } = useMutation({
+  //   mutationFn: async (data) => {
+  //     const res = await axiosPublic.post("/user", data);
+  //     return res?.data;
+  //   },
+  // });
+
+  const handleDemo = (email, password) => {
+    signInMethod(email, password)
+      .then((res) => {
+        setErrorMsg("");
+        setLoading(false);
+        navigate("/");
+        // handleCheckRoleAndNavigate(res.user.email);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErrorMsg(err.message);
+        console.log(err.message);
+      });
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    e.target.email.value = "";
+    e.target.password.value = "";
+
+    signInMethod(email, password)
+      .then((res) => {
+        setErrorMsg("");
+        setLoading(false);
+        navigate("/");
+        // handleCheckRoleAndNavigate(res.user.email);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErrorMsg(err.message);
+        console.log(err.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    setLoading(true);
+
+    googleSignInMethod()
+      .then((res) => {
+        setErrorMsg("");
+        const { email, displayName } = res.user;
+        addUser({ email, name: displayName })
+          .then((res) => {
+            console.log(res.data);
+            navigate("/");
+            setLoading(false);
+            toast.success("You have successfully Logged in!");
+          })
+          .catch((err) => {
+            setLoading(false);
+            navigate("/");
+            console.error(err);
+            setErrorMsg(err.message);
+          });
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErrorMsg(err.message);
+        console.log(err);
+      });
+  };
 
   return (
     <div className="bg-login h-screen min-h-[500px]  mx-auto flex justify-center  items-center text-white">
       <div className="w-[80%] sm:w-[70%] md:w-[50%] lg:w-[30%] mx-auto my-[2.5%]  flex flex-col justify-center items-center h-auto  backdrop-blur-md p-4 rounded-lg">
         <h1 className="text-2xl font-clashBold md:text-3xl">Welcome back!</h1>
-        <form className="flex flex-col gap-2 mt-6 w-full">
+        <form
+          onSubmit={handleSignIn}
+          className="flex flex-col gap-2 mt-6 w-full"
+        >
           <Input
             name="email"
             placeholder="Email"
@@ -48,7 +143,10 @@ const Login = () => {
             Sign Up
           </span>
         </p>
-        <div className="flex items-center justify-center w-full gap-2 py-2 text-sm duration-300 border cursor-pointer active:scale-95 md:text-base">
+        <div
+          onClick={handleGoogleSignIn}
+          className="flex items-center justify-center w-full gap-2 py-2 text-sm duration-300 border cursor-pointer active:scale-95 md:text-base"
+        >
           <FcGoogle />
           <p>Continue Wih Google</p>
         </div>

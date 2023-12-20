@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
         <div className="flex justify-between items-center text-sm">
           <p className="font-bold">{name}</p>
           <div className="flex  items-center gap-4">
-            <AddToCart />
+            <AddToCart product={product} />
             <AddToFav />
           </div>
         </div>

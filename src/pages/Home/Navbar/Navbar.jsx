@@ -72,7 +72,7 @@ const Navbar = () => {
           {/* NavItems */}
           <ul
             className={`hidden lg:flex justify-center gap-6  font-clashRegular items-center pl-[5%]  ${
-              pathname === "/" ? "text-white" : ""
+              pathname === "/" && !bgWhite ? "text-white" : ""
             }`}
           >
             {navItems.map(({ name, slug }) => (
@@ -94,7 +94,7 @@ const Navbar = () => {
           {/* Profile and Cart */}
 
           <div className="flex justify-end items-center gap-4  md:w-[80%] lg:w-max">
-            <CartCountIcon />
+            <CartCountIcon bgWhite={bgWhite} />
 
             <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
 

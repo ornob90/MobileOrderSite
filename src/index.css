@@ -19,6 +19,16 @@
     background-size: cover;
     background-position: center;
   }
+  .bg-login {
+    background: linear-gradient(
+        to right,
+        rgb(31 31 31 / 84%),
+        rgb(250 0 0 / 0%)
+      ),
+      url("https://png.pngtree.com/background/20230611/original/pngtree-person-is-taking-a-photo-of-something-inside-a-field-picture-image_3130472.jpg");
+    background-size: cover;
+    background-position: center;
+  }
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;

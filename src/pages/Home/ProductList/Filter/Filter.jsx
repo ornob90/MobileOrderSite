@@ -5,7 +5,7 @@ import Input from "../../../../components/html/Input";
 import { GrSearch } from "react-icons/gr";
 import FilterDrawer from "./FilterDrawer";
 
-const Filter = ({ filterOptions, handleFilterOption }) => {
+const Filter = ({ filterOptions, handleFilterOption, handleSearch }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -17,13 +17,14 @@ const Filter = ({ filterOptions, handleFilterOption }) => {
         <GiSettingsKnobs />
         <Button>All Filters</Button>
       </div>
-      <form className="w-full m:w-[70%] lg:w-[40%] relative">
+      <div className="w-full m:w-[70%] lg:w-[40%] relative">
         <Input
-          placeHolder="Search"
+          onChange={handleSearch}
+          placeHolder="Search By Name.."
           className="w-full text-[12px] md:text-base"
         />
         <GrSearch className="absolute top-[10px] md:top-[13px] right-[3%]" />
-      </form>
+      </div>
 
       {/* Filter Options */}
       <FilterDrawer

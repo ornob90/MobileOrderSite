@@ -10,11 +10,11 @@ const SelectOption = ({ value, name, options, onChange }) => {
         onChange={onChange}
         className="w-full bg-gray-300 focus:outline-none mt-3 py-1 px-2 max-h-[100px] overflow-y-auto focus-within:max-h-[100px]"
       >
-        <option className="" disabled>
-          Select
+        <option className="" value="">
+          Any
         </option>
-        {options.map((option) => (
-          <option className="" key={option} value={option}>
+        {options?.map((option, idx) => (
+          <option className="" key={idx} value={option}>
             {option}
           </option>
         ))}

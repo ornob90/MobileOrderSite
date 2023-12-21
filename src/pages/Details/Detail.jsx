@@ -85,7 +85,7 @@ const Detail = () => {
               </p>
             </li>
           </ul>
-          <AddToCart type="button" />
+          <AddToCart product={product} type="button" />
         </div>
       </div>
     </Container>

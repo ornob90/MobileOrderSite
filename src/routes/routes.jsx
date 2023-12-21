@@ -6,6 +6,7 @@ import Cart from "../pages/Cart/Cart";
 import Favorite from "../pages/Favorite/Favorite";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,15 +18,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/detail/:id",
-        element: <Detail />,
+        element: (
+          <PrivateRoute>
+            <Detail />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/favorite",
-        element: <Favorite />,
+        element: (
+          <PrivateRoute>
+            <Favorite />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

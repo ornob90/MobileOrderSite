@@ -128,7 +128,7 @@ const Navbar = () => {
 
             <CgMenuRightAlt
               className={`text-xl md:hidden  ${
-                bgWhite ? "text-black" : "text-white"
+                pathname === "/" && bgWhite ? "text-black" : "text-white"
               }`}
               onClick={() => setMenu(!menu)}
             />

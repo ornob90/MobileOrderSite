@@ -6,9 +6,12 @@ import usePostPublic from "../../hooks/apiPublic/usePostPublic";
 import useDeletePublic from "../../hooks/apiPublic/useDeletePublic";
 import useGetPublic from "../../hooks/apiPublic/useGetPublic";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddToFav = ({ _id, favOnly }) => {
-  const { user: curUser } = useAuth();
+  const { user: curUser, loading } = useAuth();
+
+  const navigate = useNavigate();
 
   const { mutateAsync: addToFavorite } = usePostPublic(null, `/favorite`);
   const { mutateAsync: deleteFromFavorite } = useDeletePublic([
@@ -27,6 +30,10 @@ const AddToFav = ({ _id, favOnly }) => {
   }, [favStatus]);
 
   const handleBookmarked = async (action) => {
+    if (!loading && !curUser) {
+      return navigate("/login");
+    }
+
     if (action === "+") setBookmarked(true);
     if (action === "-") setBookmarked(false);
 

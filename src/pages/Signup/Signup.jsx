@@ -6,6 +6,7 @@ import usePostPublic from "../../hooks/apiPublic/usePostPublic";
 import useAuth from "../../hooks/auth/useAuth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Loading from "../Loading/Loading";
 
 const Signup = () => {
   const { signUpMethod, signInMethod, loading: authLoading, user } = useAuth();

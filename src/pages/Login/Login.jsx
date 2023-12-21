@@ -7,6 +7,7 @@ import usePostPublic from "../../hooks/apiPublic/usePostPublic";
 import useAuth from "../../hooks/auth/useAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -99,6 +100,8 @@ const Login = () => {
         console.log(err);
       });
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="bg-login h-screen min-h-[500px]  mx-auto flex justify-center  items-center text-white">

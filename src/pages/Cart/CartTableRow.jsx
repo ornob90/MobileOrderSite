@@ -51,7 +51,7 @@ const CartTableRow = ({ product, quantity, cartID }) => {
         {quantity}
       </td>
       <td className="col-span-1 flex flex-col justify-center items-center">
-        <p className=" font-clashRegular text-sm">${200}</p>
+        <p className=" font-clashRegular text-sm">${price}</p>
       </td>
       <td className="col-span-1 flex justify-center items-center">
         <DeleteFromCart id={cartID} />

@@ -5,15 +5,23 @@ import { CiShoppingCart } from "react-icons/ci";
 import usePostPublic from "../../hooks/apiPublic/usePostPublic";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/auth/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddToCart = ({ type = "icon", product }) => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  const navigate = useNavigate();
+
   const { mutateAsync: addToCart } = usePostPublic(
     ["CartStat", user?.email],
     "/add-to-cart"
   );
 
   const handleAddToCart = async () => {
+    if (!loading && !user) {
+      return navigate("/login");
+    }
+
     try {
       const productToAdd = {
         userEmail: user?.email,

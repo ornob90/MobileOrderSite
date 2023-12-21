@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
           <p className="font-bold">{name}</p>
           <div className="flex  items-center gap-4">
             <AddToCart product={product} />
-            <AddToFav />
+            <AddToFav _id={_id} />
           </div>
         </div>
         <p className="mt-3 text-gray-500">{brand}</p>

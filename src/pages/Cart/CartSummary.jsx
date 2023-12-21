@@ -3,9 +3,7 @@ const CartSummery = () => {
 
   return (
     <div className="lg:px-10 mt-10 lg:mt-0">
-      {/* <p className=" font-poppins font-bold text-lg md:text-xl pb-4 border-b">
-        SUMMARY
-      </p> */}
+      
       <div className="pt-4 text-sm text-gray-600 pb-5 ">
         <div className="flex justify-between items-center pb-2">
           <p>Subtotal</p>

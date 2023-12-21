@@ -1,18 +1,21 @@
+import useGetPublic from "../../hooks/apiPublic/useGetPublic";
+import useAuth from "../../hooks/auth/useAuth";
+
 const CartSummery = () => {
-  // console.log(cartTotal);
+  const { user } = useAuth();
+  const { data: cartState } = useGetPublic(
+    ["CartStat", user?.email],
+    `/cart-states/${user?.email}`
+  );
 
   return (
     <div className="lg:px-10 mt-10 lg:mt-0">
-      
       <div className="pt-4 text-sm text-gray-600 pb-5 ">
         <div className="flex justify-between items-center pb-2">
           <p>Subtotal</p>
-          <p>$50</p>
+          <p>${cartState?.totalAmount}</p>
         </div>
-        <div className="flex justify-between items-center pb-2">
-          <p>Discount</p>
-          <p>$ 50</p>
-        </div>
+
         <div className="flex justify-between items-center">
           <p>Shipping Fees</p>
           <p>$50</p>
@@ -20,7 +23,9 @@ const CartSummery = () => {
       </div>
       <div className="flex justify-between items-center pt-8 border-y pb-4">
         <p className="text-3xl md:text-4xl font-poppins font-base">Total</p>
-        <p className="text-xl font-poppins font-semibold ">$100</p>
+        <p className="text-xl font-poppins font-semibold ">
+          ${cartState?.totalAmount - 50}
+        </p>
       </div>
 
       <div className="mt-4 text-[12px] text-center">

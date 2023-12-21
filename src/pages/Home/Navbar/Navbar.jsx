@@ -102,7 +102,16 @@ const Navbar = () => {
 
             {user?.email ? (
               <>
-                <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black "></div>
+                <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-full border border-black ">
+                  <img
+                    src={
+                      user?.photoURL ||
+                      "https://i.pngimg.me/thumb/f/720/m2i8d3i8N4d3N4K9.jpg"
+                    }
+                    alt=""
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
 
                 <div className="hidden md:block">
                   <LogoutBtn />

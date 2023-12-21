@@ -7,11 +7,13 @@ import useDeletePublic from "../../hooks/apiPublic/useDeletePublic";
 import useGetPublic from "../../hooks/apiPublic/useGetPublic";
 import toast from "react-hot-toast";
 
-const AddToFav = ({ _id }) => {
+const AddToFav = ({ _id, favOnly }) => {
   const { user: curUser } = useAuth();
 
   const { mutateAsync: addToFavorite } = usePostPublic(null, `/favorite`);
-  const { mutateAsync: deleteFromFavorite } = useDeletePublic(null);
+  const { mutateAsync: deleteFromFavorite } = useDeletePublic([
+    ["Favorites", curUser?.email],
+  ]);
 
   const [bookmarked, setBookmarked] = useState(false);
 
@@ -52,13 +54,22 @@ const AddToFav = ({ _id }) => {
 
   return (
     <>
-      {bookmarked ? (
+      {favOnly ? (
         <FaHeart onClick={() => handleBookmarked("-")} className="text-2xl" />
       ) : (
-        <FaRegHeart
-          onClick={() => handleBookmarked("+")}
-          className="text-2xl"
-        />
+        <>
+          {bookmarked ? (
+            <FaHeart
+              onClick={() => handleBookmarked("-")}
+              className="text-2xl"
+            />
+          ) : (
+            <FaRegHeart
+              onClick={() => handleBookmarked("+")}
+              className="text-2xl"
+            />
+          )}
+        </>
       )}
     </>
   );

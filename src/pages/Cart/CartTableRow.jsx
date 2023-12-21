@@ -47,11 +47,8 @@ const CartTableRow = ({ product, quantity, cartID }) => {
           <p className=" font-clashRegular text-sm">{memory} GB</p>
         </div>
       </td>
-      <td className="col-span-1 flex flex-col  justify-center pb-[10%]">
-        <QuantityBtn
-          productQuantity={productQuantity}
-          handleQuantity={handleQuantity}
-        />
+      <td className=" col-span-1 flex flex-col  justify-center pb-[10%] items-center">
+        {quantity}
       </td>
       <td className="col-span-1 flex flex-col justify-center items-center">
         <p className=" font-clashRegular text-sm">${200}</p>

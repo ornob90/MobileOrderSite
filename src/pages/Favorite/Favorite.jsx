@@ -2,8 +2,16 @@ import React from "react";
 import Container from "../../components/shared/Container";
 import ProductCard from "../../components/card/ProductCard";
 import FavoriteCard from "../../components/card/FavoriteCard";
+import useAuth from "../../hooks/auth/useAuth";
+import useGetPublic from "../../hooks/apiPublic/useGetPublic";
 
 const Favorite = () => {
+  const { user } = useAuth();
+  const { data: favorites, isLoading } = useGetPublic(
+    ["Favorites", user?.email],
+    `/favorites?email=${user?.email}`
+  );
+
   return (
     <Container className="mt-[80px] mb-16 ">
       {/* Header  */}
@@ -18,7 +26,9 @@ const Favorite = () => {
 
         {/* Grid  */}
         <div className="gap-2 mt-16 grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <FavoriteCard type="favorite" />
+          {favorites?.map((favorite) => (
+            <FavoriteCard key={favorite?._id} favorite={favorite} />
+          ))}
         </div>
       </div>
     </Container>

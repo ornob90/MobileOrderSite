@@ -3,6 +3,18 @@
 ## Description
 This project is a full-stack mobile ordering application built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with Firebase for authentication. The application allows users to explore and order mobile products with a user-friendly interface.
 
+## Live
+
+```
+https://mobileshop-8f0a3.web.app/
+```
+
+## Server Side Link
+
+```
+https://github.com/ornob90/MobileOrderSiteServer
+```
+
 ## Features
 
 - **Product Listing:** Users can view all available mobile products on the home page.

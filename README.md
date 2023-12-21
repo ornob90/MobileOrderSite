@@ -46,7 +46,7 @@ https://github.com/ornob90/MobileOrderSiteServer
 4. Run the project
 `npm run dev`
 
-Make sure to set up your Firebase credentials for authentication.
+Make sure to set up your Firebase credentials for authentication. `Watch Demo ENV file`
 
 - ### Back End
 

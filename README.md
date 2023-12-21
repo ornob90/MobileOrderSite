@@ -31,6 +31,9 @@ This project is a full-stack mobile ordering application built using the MERN st
 3. Install server dependencies: 
 `npm install`
 
+4. Run the project
+`npm run dev`
+
 Make sure to set up your Firebase credentials for authentication.
 
 - ### Back End

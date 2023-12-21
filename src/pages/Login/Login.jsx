@@ -31,7 +31,9 @@ const Login = () => {
   //   },
   // });
 
-  const handleDemo = (email, password) => {
+  const handleDemo = () => {
+    const email = import.meta.env.VITE_DEMO_EMAIL;
+    const password = import.meta.env.VITE_DEMO_PASS;
     signInMethod(email, password)
       .then((res) => {
         setErrorMsg("");
@@ -120,16 +122,11 @@ const Login = () => {
           <button className="bg-black text-white py-2 mt-10">Connect</button>
           <div className="flex justify-between gap-4">
             <Button
+              onClick={handleDemo}
               type="button"
               className="flex-1 bg-green-500 py-2 mt-3 text-sm text-white md:text-base"
             >
               Demo User
-            </Button>
-            <Button
-              type="button"
-              className="flex-1 bg-red-500 py-2 mt-3 text-sm text-white md:text-base"
-            >
-              Demo Admin
             </Button>
           </div>
         </form>

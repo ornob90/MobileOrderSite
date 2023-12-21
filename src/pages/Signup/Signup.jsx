@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const Signup = () => {
-  const { signUpMethod, loading: authLoading, user } = useAuth();
+  const { signUpMethod, signInMethod, loading: authLoading, user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -92,6 +92,23 @@ const Signup = () => {
       });
   };
 
+  const handleDemo = () => {
+    const email = import.meta.env.VITE_DEMO_EMAIL;
+    const password = import.meta.env.VITE_DEMO_PASS;
+    signInMethod(email, password)
+      .then((res) => {
+        setErrorMsg("");
+        setLoading(false);
+        navigate("/");
+        // handleCheckRoleAndNavigate(res.user.email);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErrorMsg(err.message);
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="bg-login h-screen min-h-[500px]  mx-auto flex justify-center  items-center text-white">
       <div className="w-[80%] sm:w-[70%] md:w-[50%] lg:w-[30%] mx-auto my-[2.5%]  flex flex-col justify-center items-center h-auto  backdrop-blur-md p-4 rounded-lg">
@@ -128,16 +145,11 @@ const Signup = () => {
           <button className="bg-black text-white py-2 mt-10">Join</button>
           <div className="flex justify-between gap-4">
             <Button
+              onClick={handleDemo}
               type="button"
               className="flex-1 bg-green-500 py-2 mt-3 text-sm text-white md:text-base"
             >
               Demo User
-            </Button>
-            <Button
-              type="button"
-              className="flex-1 bg-red-500 py-2 mt-3 text-sm text-white md:text-base"
-            >
-              Demo Admin
             </Button>
           </div>
         </form>

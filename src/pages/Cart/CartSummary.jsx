@@ -18,13 +18,13 @@ const CartSummery = () => {
 
         <div className="flex justify-between items-center">
           <p>Shipping Fees</p>
-          <p>$50</p>
+          <p>${cartState?.totalAmount ? 50 : 0} </p>
         </div>
       </div>
       <div className="flex justify-between items-center pt-8 border-y pb-4">
         <p className="text-3xl md:text-4xl font-poppins font-base">Total</p>
         <p className="text-xl font-poppins font-semibold ">
-          ${cartState?.totalAmount - 50}
+          ${cartState?.totalAmount ? cartState?.totalAmount - 50 : 0}
         </p>
       </div>
 

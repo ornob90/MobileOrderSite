@@ -12,7 +12,7 @@ const CartTable = () => {
   );
 
   return (
-    <table className=" no-scrollbar font-poppins w-full  ">
+    <table className=" no-scrollbar font-poppins w-full  min-h-[300px]">
       {/* Header */}
       <thead className=" border-b pb-4 mt-2 overflow-scroll  no-scrollbar w-full ">
         <tr

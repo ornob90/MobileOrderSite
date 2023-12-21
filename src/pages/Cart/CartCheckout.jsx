@@ -7,7 +7,10 @@ import toast from "react-hot-toast";
 const CartCheckout = () => {
   const { user } = useAuth();
   const { mutateAsync: addOrder } = usePostPublic(
-    [["Carts", user?.email]],
+    [
+      ["Carts", user?.email],
+      ["CartStat", user?.email],
+    ],
     `/order/${user?.email}`
   );
 

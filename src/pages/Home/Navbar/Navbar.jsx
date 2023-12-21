@@ -68,7 +68,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="w-max flex items-center gap-3">
           <Link to="/" className="text-lg  font-bold sm:text-xl">
-            ShoeSphere
+            MobileShop
           </Link>
         </div>
 

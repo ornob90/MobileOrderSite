@@ -11,7 +11,7 @@ const Cart = () => {
       <div className="lg:col-span-3 overflow-x-auto">
         <CartTable />
       </div>
-      <div className="lg:col-span-2 overflow-x-auto">
+      <div className="lg:col-span-2 overflow-x-auto min-h-[300px]">
         <CartPurchased />
       </div>
     </Container>

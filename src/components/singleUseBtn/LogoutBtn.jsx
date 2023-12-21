@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../html/Button";
 import useAuth from "../../hooks/auth/useAuth";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const LogoutBtn = ({ className }) => {
   const { signOutMethod } = useAuth();
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const LogoutBtn = ({ className }) => {
       .then(() => {
         // console.log("Signed Out");
         toast.success("You have been logged out!!");
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => console.log(err.message));
   };
